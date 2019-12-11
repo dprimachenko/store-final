@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Row, Col } from "../Grid";
-import styles from "./style.css";
+import "./style.css";
 
 const Checkout = withRouter(({ history }) => {
 

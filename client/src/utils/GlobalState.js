@@ -16,6 +16,38 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case UPDATE_PRODUCTS:
+      return {
+        ...state,
+        product: action.products,
+        loading: false
+      }
+    case UPDATE_CART:
+      return {
+        ...state,
+        cart: state.cart,
+        loading: false
+      }
+
+    case LOADING:
+      return {
+        ...state,
+        loading: true
+      } 
+
+    case REMOVE_PRODUCT:
+      return {
+        ...state,
+        cart: state.cart.filter(item => item.id !== action.productId),
+        loading: false
+      }
+
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        cart: [...state.cart, action.product],
+        loading: false
+      }
     default:
       return state;
   }
@@ -24,7 +56,7 @@ const reducer = (state, action) => {
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     products: [],
-    currentProduct: {
+    product: {
       _id: 0,
       title: "",
       body: "",

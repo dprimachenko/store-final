@@ -40,7 +40,7 @@ function SearchForm() {
                 id="term"
               />
               <button className="search-btn" onClick={handleFormSubmit}>
-                <i class="fa fa-search" aria-label="search" />
+                <i className="fa fa-search" aria-hidden="true"></i>
               </button>
             </div>
           </Col>

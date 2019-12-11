@@ -14,6 +14,7 @@ module.exports = {
       )
       .then(results => {
         console.log("RESULTS: ", results.data);
+        results.data.products.map(x => console.log(x.name))
         res.json([...results.data.products]);
       })
       .catch(err => console.log(err));
@@ -24,16 +25,16 @@ module.exports = {
     }
     console.log("REQ CONTR: ", req.query.q);
     res.json(true);
-    // axios
-    //   .get(
-    //     `https://api.bestbuy.com/v1/products(departmentId=
-    //     ${req.params.id})?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`
-    //   )
-    //   .then(results => {
-    //     console.log("RESULTS!!!: ", results.data);
-    //     res.json([...results.data.products]);
-    //   })
-    //   .catch(err => console.log(err));
+    axios
+      .get(
+        `https://api.bestbuy.com/v1/products(departmentId=
+        ${req.params.id})?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`
+      )
+      .then(results => {
+        console.log("RESULTS!!!: ", results.data);
+        res.json([...results.data.products]);
+      })
+      .catch(err => console.log(err));
   },
   findById: function(req, res) {
     axios
